@@ -44,6 +44,7 @@
     "@formatjs/intl-pluralrules": "^5.2.2",
     "@gamestdio/websocket": "^0.3.2",
     "@github/webauthn-json": "^2.1.1",
+    "@inrupt/solid-ui-react": "^2.9.0",
     "@material-design-icons/svg": "^0.14.10",
     "@rails/ujs": "^7.0.6",
     "@reduxjs/toolkit": "^1.9.5",
@@ -215,7 +216,8 @@
   "resolutions": {
     "@types/react": "^18.0.26",
     "kind-of": "^6.0.3",
-    "webpack/terser-webpack-plugin": "^4.2.3"
+    "webpack/terser-webpack-plugin": "^4.2.3",
+    "webpack": "^4.47.0"
   },
   "optionalDependencies": {
     "bufferutil": "^4.0.7",

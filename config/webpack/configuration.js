@@ -24,5 +24,17 @@ module.exports = {
     NODE_ENV: env.NODE_ENV,
     PUBLIC_OUTPUT_PATH: settings.public_output_path,
   },
+  module: {
+    rules: [
+      {
+        test: /\.mjs$/,
+        include: /node_modules/,
+        type: "javascript/auto"
+      }
+    ]
+  },
   output,
+  resolve: {
+    extensions: ['.mjs', '.js', '.json']
+  }
 };

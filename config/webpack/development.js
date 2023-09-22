@@ -21,8 +21,20 @@ module.exports = merge(sharedConfig, {
 
   stats: {
     errorDetails: true,
+    warningsFilter: /Circular dependency detected/
   },
-
+  module: {
+    rules: [
+      {
+        test: /\.mjs$/,
+        include: /node_modules/,
+        type: "javascript/auto"
+      }
+    ]
+  },
+  resolve: {
+    extensions: ['.mjs', '.js', '.json']
+  },
   output: {
     pathinfo: true,
   },

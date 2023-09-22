@@ -6,6 +6,7 @@ import { Route } from 'react-router-dom';
 
 import { Provider as ReduxProvider } from 'react-redux';
 
+import {SessionProvider} from "@inrupt/solid-ui-react";
 import { ScrollContext } from 'react-router-scroll-4';
 
 import { fetchCustomEmojis } from 'mastodon/actions/custom_emojis';
@@ -17,6 +18,7 @@ import UI from 'mastodon/features/ui';
 import initialState, { title as siteTitle } from 'mastodon/initial_state';
 import { IntlProvider } from 'mastodon/locales';
 import { store } from 'mastodon/store';
+
 
 const title = process.env.NODE_ENV === 'production' ? siteTitle : `${siteTitle} (Dev)`;
 
@@ -73,6 +75,7 @@ export default class Mastodon extends PureComponent {
 
   render () {
     return (
+<SessionProvider>
       <IntlProvider>
         <ReduxProvider store={store}>
           <ErrorBoundary>
@@ -86,6 +89,7 @@ export default class Mastodon extends PureComponent {
           </ErrorBoundary>
         </ReduxProvider>
       </IntlProvider>
+    </SessionProvider>
     );
   }
 

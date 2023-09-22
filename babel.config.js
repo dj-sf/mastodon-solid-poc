@@ -33,6 +33,7 @@ module.exports = (api) => {
         test: /tesseract\.js/,
         presets: [
           ['@babel/env', { ...envOptions, modules: 'commonjs' }],
+          ["@babel/preset-env", { ...envOptions, "modules": 'commonjs' }]
         ],
       },
     ],
