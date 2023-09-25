@@ -20,8 +20,7 @@ module.exports = merge(sharedConfig, {
   devtool: 'cheap-module-eval-source-map',
 
   stats: {
-    errorDetails: true,
-    warningsFilter: /Circular dependency detected/
+    errorDetails: true
   },
   module: {
     rules: [
