@@ -75,7 +75,7 @@ export default class Mastodon extends PureComponent {
 
   render () {
     return (
-<SessionProvider>
+<SessionProvider onError={console.error} sessionId='solid-session-provider'>
       <IntlProvider>
         <ReduxProvider store={store}>
           <ErrorBoundary>

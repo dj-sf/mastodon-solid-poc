@@ -3,6 +3,8 @@ import { useCallback } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 
+import { LoginButton } from '@inrupt/solid-ui-react';
+
 import { openModal } from 'mastodon/actions/modal';
 import { registrationsOpen, sso_redirect } from 'mastodon/initial_state';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
@@ -47,7 +49,9 @@ const SignInBanner = () => {
       <p><FormattedMessage id='sign_in_banner.text' defaultMessage='Login to follow profiles or hashtags, favorite, share and reply to posts. You can also interact from your account on a different server.' /></p>
       {signupButton}
       <a href='/auth/sign_in' className='button button--block button-tertiary'><FormattedMessage id='sign_in_banner.sign_in' defaultMessage='Login' /></a>
+      <LoginButton onError={console.error} />
     </div>
+
   );
 };
 
