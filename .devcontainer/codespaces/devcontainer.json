@@ -33,7 +33,14 @@
     "STREAMING_API_BASE_URL": "https://${localEnv:CODESPACE_NAME}-4000.app.github.dev",
     "DISABLE_FORGERY_REQUEST_PROTECTION": "true",
     "ES_ENABLED": "",
-    "LIBRE_TRANSLATE_ENDPOINT": ""
+    "LIBRE_TRANSLATE_ENDPOINT": "",
+    "OIDC_ENABLED": "true",
+    "OIDC_ISSUER": "inrupt_podspaces",
+    "OIDC_SCOPE": "",
+    "OIDC_URI_FIELD": "",
+    "OIDC_CLIENT_ID": "2254077c-faec-48ad-81e8-7cc69b209346",
+    "OIDC_CLIENT_SECRET": "c6c7a701-c1dd-42a2-ac94-3bd62cdcf223",
+    "OIDC_REDIRECT_URL": "http://localhost:3000/auth/inrupt_podspaces/callback"
   },
 
   "onCreateCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",

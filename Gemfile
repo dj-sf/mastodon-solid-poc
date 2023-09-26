@@ -187,6 +187,9 @@ group :development, :test do
   gem 'stackprof', require: false
   gem 'test-prof'
 
+  # Breakpoint debugging
+  gem 'byebug'
+
   # RSpec runner for rails
   gem 'rspec-rails', '~> 6.0'
 end

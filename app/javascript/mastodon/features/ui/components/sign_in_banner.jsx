@@ -49,7 +49,7 @@ const SignInBanner = () => {
       <p><FormattedMessage id='sign_in_banner.text' defaultMessage='Login to follow profiles or hashtags, favorite, share and reply to posts. You can also interact from your account on a different server.' /></p>
       {signupButton}
       <a href='/auth/sign_in' className='button button--block button-tertiary'><FormattedMessage id='sign_in_banner.sign_in' defaultMessage='Login' /></a>
-      <LoginButton onError={console.error} oidcIssuer='https://login.inrupt.com' redirectUrl={new URL("/callback", window.location.href).toString()} />
+      <LoginButton onError={console.error} oidcIssuer='https://login.inrupt.com' redirectUrl={new URL("/auth/openid_connect/callback", window.location.href).toString()} />
     </div>
 
   );
