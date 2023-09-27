@@ -190,6 +190,8 @@ group :development, :test do
   # debugging tools
   gem 'byebug'
   gem 'solargraph'
+  gem 'debug'
+  gem 'rdbg'
 
   # RSpec runner for rails
   gem 'rspec-rails', '~> 6.0'
