@@ -6,6 +6,7 @@ import { FormattedMessage } from 'react-intl';
 import { LoginButton } from '@inrupt/solid-ui-react';
 
 import { openModal } from 'mastodon/actions/modal';
+import Button from 'mastodon/components/button';
 import { registrationsOpen, sso_redirect } from 'mastodon/initial_state';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
 
@@ -44,12 +45,20 @@ const SignInBanner = () => {
     );
   }
 
+  let solidAuthButton = (
+    <LoginButton  id='sign_in_banner.create_account' onError={console.error} oidcIssuer='https://login.inrupt.com' redirectUrl={new URL("/auth/auth/openid_connect/callback", window.location.href).toString()}>
+      <Button className='button button--block' id='sign_in_banner.login_with_solid'>Login with Solid</Button>
+    </LoginButton>
+
+  )
+
+
   return (
     <div className='sign-in-banner'>
       <p><FormattedMessage id='sign_in_banner.text' defaultMessage='Login to follow profiles or hashtags, favorite, share and reply to posts. You can also interact from your account on a different server.' /></p>
+      {solidAuthButton}
       {signupButton}
       <a href='/auth/sign_in' className='button button--block button-tertiary'><FormattedMessage id='sign_in_banner.sign_in' defaultMessage='Login' /></a>
-      <LoginButton onError={console.error} oidcIssuer='https://login.inrupt.com' redirectUrl={new URL("/auth/auth/openid_connect/callback", window.location.href).toString()} />
     </div>
 
   );
