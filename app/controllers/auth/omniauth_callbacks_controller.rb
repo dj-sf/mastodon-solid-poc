@@ -1,19 +1,23 @@
 # frozen_string_literal: true
 
+require 'debug'
+
 class Auth::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   skip_before_action :verify_authenticity_token
-
+  # # binding.b
   def self.provides_callback_for(provider)
+    # # binding.b
     define_method provider do
       @provider = provider
       @user = User.find_for_oauth(request.env['omniauth.auth'], current_user)
-
+      # # binding.b
       if @user.persisted?
         record_login_activity
         sign_in_and_redirect @user, event: :authentication
         set_flash_message(:notice, :success, kind: label_for_provider) if is_navigational_format?
       else
         session["devise.#{provider}_data"] = request.env['omniauth.auth']
+        # # binding.b
         redirect_to new_user_registration_url
       end
     end
@@ -34,6 +38,7 @@ class Auth::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   private
 
   def record_login_activity
+    # # binding.break
     LoginActivity.create(
       user: @user,
       success: true,

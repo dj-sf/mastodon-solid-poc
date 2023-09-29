@@ -6,7 +6,6 @@ import { Route } from 'react-router-dom';
 
 import { Provider as ReduxProvider } from 'react-redux';
 
-import {SessionProvider} from "@inrupt/solid-ui-react";
 import { ScrollContext } from 'react-router-scroll-4';
 
 import { fetchCustomEmojis } from 'mastodon/actions/custom_emojis';
@@ -75,7 +74,6 @@ export default class Mastodon extends PureComponent {
 
   render () {
     return (
-<SessionProvider onError={console.error} sessionId='solid-session-provider'>
       <IntlProvider>
         <ReduxProvider store={store}>
           <ErrorBoundary>
@@ -89,7 +87,6 @@ export default class Mastodon extends PureComponent {
           </ErrorBoundary>
         </ReduxProvider>
       </IntlProvider>
-    </SessionProvider>
     );
   }
 

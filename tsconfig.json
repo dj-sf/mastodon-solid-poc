@@ -13,7 +13,8 @@
     "paths": {
       "mastodon": ["app/javascript/mastodon"],
       "mastodon/*": ["app/javascript/mastodon/*"]
-    }
+    },
+    "sourceMap": true
   },
   "include": [
     "app/javascript/mastodon",

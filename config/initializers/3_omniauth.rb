@@ -105,6 +105,7 @@ Devise.setup do |config|
     oidc_options[:client_options][:end_session_endpoint] = ENV['OIDC_END_SESSION_ENDPOINT'] if ENV['OIDC_END_SESSION_ENDPOINT'] #OPTIONAL
     oidc_options[:security] = {}
     oidc_options[:security][:assume_email_is_verified] = ENV['OIDC_SECURITY_ASSUME_EMAIL_IS_VERIFIED'] == 'true' #OPTIONAL
+    # binding.b
     config.omniauth :openid_connect, oidc_options
   end
 end
