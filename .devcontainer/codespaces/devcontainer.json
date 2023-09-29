@@ -40,7 +40,14 @@
     "OIDC_UID_FIELD": "sub",
     "OIDC_CLIENT_ID": "2254077c-faec-48ad-81e8-7cc69b209346",
     "OIDC_CLIENT_SECRET": "c6c7a701-c1dd-42a2-ac94-3bd62cdcf223",
-    "OIDC_REDIRECT_URL": "http://localhost:3000/auth/auth/openid_connect/callback"
+    "OIDC_REDIRECT_URI": "https://turbo-journey-5v6gwr4vqw43p4vw-3000.app.github.dev/auth/auth/openid_connect/callback",
+    // "OIDC_DISCOVERY": "true",
+    "OIDC_RESPONSE_TYPE": "code",
+    "OIDC_PORT": "443",
+    "OIDC_HTTP_SCHEME": "https",
+    "WEB_CONCURRENCY": "1",
+    "RAILS_MAX_THREADS": "1",
+    "OMNIAUTH_ONLY": "true"
   },
 
   "onCreateCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",

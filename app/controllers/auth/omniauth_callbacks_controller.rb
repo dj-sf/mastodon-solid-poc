@@ -38,7 +38,7 @@ class Auth::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   private
 
   def record_login_activity
-    # # binding.break
+    # binding.break
     LoginActivity.create(
       user: @user,
       success: true,

@@ -18,7 +18,6 @@ gem 'aws-sdk-s3', '~> 1.123', require: false
 gem 'fog-core', '<= 2.4.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'kt-paperclip', '~> 7.2'
-gem 'md-paperclip-azure', '~> 2.2', require: false
 gem 'blurhash', '~> 0.1'
 
 gem 'active_model_serializers', '~> 0.10'
@@ -192,6 +191,8 @@ group :development, :test do
   gem 'solargraph'
   gem 'debug'
   gem 'rdbg'
+  gem 'pry'
+  gem 'pry-byebug'
 
   # RSpec runner for rails
   gem 'rspec-rails', '~> 6.0'

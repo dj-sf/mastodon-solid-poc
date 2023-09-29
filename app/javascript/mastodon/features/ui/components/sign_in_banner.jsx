@@ -2,13 +2,22 @@ import { useCallback } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-
-import { LoginButton } from '@inrupt/solid-ui-react';
-
 import { openModal } from 'mastodon/actions/modal';
-import Button from 'mastodon/components/button';
 import { registrationsOpen, sso_redirect } from 'mastodon/initial_state';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
+
+
+const beginOidcAuthentication = async () => {
+  try {
+    const response = await fetch(new URL("/auth/auth/openid_connect", window.location.href), {method: 'POST', content: 'text/html; charset=utf-8'})
+    return response;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
+
+
 
 const SignInBanner = () => {
   const dispatch = useAppDispatch();
@@ -46,11 +55,10 @@ const SignInBanner = () => {
   }
 
   let solidAuthButton = (
-    <LoginButton  id='sign_in_banner.create_account' onError={console.error} oidcIssuer='https://login.inrupt.com' redirectUrl={new URL("/auth/auth/openid_connect/callback", window.location.href).toString()}>
-      <Button className='button button--block' id='sign_in_banner.login_with_solid'>Login with Solid</Button>
-    </LoginButton>
-
-  )
+    <button onClick={beginOidcAuthentication} className='button button--block' >
+        <FormattedMessage id='sign_in_banner.signin_with_solid' defaultMessage='Signin with SolidPod' />
+    </button>
+)
 
 
   return (
