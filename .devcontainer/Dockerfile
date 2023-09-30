@@ -1,24 +1,35 @@
 # For details, see https://github.com/devcontainers/images/tree/main/src/ruby
 FROM mcr.microsoft.com/devcontainers/ruby:1-3.2-bullseye
 
-# Switch to system Ruby and uninstall RVM
+# Switch to system Ruby and uninstall RVM.
+# ALSO remove RVM from the path for both vscode AND root users.
 RUN /bin/bash -lc "rvm use system" \
     && /bin/bash -lc "rvm implode --force" \
     && rm -rf /usr/local/rvm \
     && NEW_PATH=$(echo $PATH | awk -v RS=: -v ORS=: '/rvm/ {next} {print}' | sed 's/:$//') \
-    && echo "export PATH=$NEW_PATH" >> /home/vscode/.bashrc \
-    && echo "unset GEM_HOME GEM_PATH" >> /home/vscode/.bashrc
+    && echo "export PATH=$NEW_PATH" >> /home/vscode/.bashrc \ 
+    && echo "unset GEM_HOME GEM_PATH" >> /home/vscode/.bashrc \ 
+    && echo "export PATH=$NEW_PATH" >> ~/.bashrc \ 
+    && echo "unset GEM_HOME GEM_PATH" >> ~/.bashrc 
+RUN /bin/bash -l -c "gem env"
 
-# Initialize rbenv and set Ruby version
+# Initialize rbenv and set Ruby version for both ROOT user and vscode user
+# Also Install Ruby 3.2.2 using rbenv and set as global default
 USER vscode
 RUN echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> /home/vscode/.bashrc \
+    && echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc \  
+    && /bin/bash -lc "rbenv install 3.2.2" \
+    && /bin/bash -lc "rbenv global 3.2.2" \
     && echo 'eval "$(rbenv init -)"' >> /home/vscode/.bashrc \
-    && /bin/bash -l -c "rbenv global system"
+    && echo 'eval "$(rbenv init -)"' >> ~/.bashrc 
+    
+RUN /bin/bash -l -c "gem env"
 
-# Install Ruby 3.2.2 using rbenv and set as global default
-RUN /bin/bash -lc "rbenv install 3.2.2" \
-    && /bin/bash -lc "rbenv global 3.2.2"
 
+# RUN /bin/bash -lc "rbenv install 3.2.2" \
+#     && /bin/bash -lc "rbenv global 3.2.2"
+
+RUN /bin/bash -l -c "gem env"
 # Install Rails
 # RUN gem install rails webdrivers
 
@@ -39,8 +50,24 @@ RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && nvm install ${NODE_VERSI
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends libicu-dev libidn11-dev ffmpeg imagemagick libpam-dev
 
-# # [Optional] Uncomment this line to install additional gems.
-# RUN gem install foreman
+# RUN echo "DEBUG ENVIRONMENT"
+# RUN  su vscode -c "gem env"
+
+# RUN echo "DEBUG PATH"
+# RUN su vscode -c "echo $PATH"
+RUN echo "root GEM ENVIRONMENT"
+RUN gem env
+
+# vscode user GEM ENVIRONMENT
+RUN echo "root GEM ENVIRONMENT"
+RUN su vscode -c "gem env"
+
+# # REVISIT THIS LATER TO DEBUG
+# [Optional] Uncomment this line to install additional gems.
+RUN su vscode -c "source /home/vscode/.bashrc \
+&& export GEM_HOME=/home/vscode/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.2 \
+&& export GEM_PATH=/home/vscode/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.2 \
+&& gem install foreman"
 
 # [Optional] Uncomment this line to install global node packages.
 RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && npm install -g yarn" 2>&1
