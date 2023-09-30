@@ -1,6 +1,15 @@
 # For details, see https://github.com/devcontainers/images/tree/main/src/ruby
 FROM mcr.microsoft.com/devcontainers/ruby:1-3.2-bullseye
 
+# Uninstall RVM
+RUN /bin/bash -lc "rvm implode --force" \
+    && rm -rf /usr/local/rvm \
+    && sed -i '/rvm/d' ~/.bashrc
+
+
+# Remove references to RVM from path
+ENV PATH="/usr/local/share/rbenv/bin:/usr/local/share/nvm/versions/node/v16.20.2/bin:/usr/local/bundle/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/root/.local/bin"
+
 # Install Rails
 # RUN gem install rails webdrivers
 
