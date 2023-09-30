@@ -21,7 +21,7 @@ Devise.setup do |config|
     cas_options[:port] = ENV['CAS_PORT'] if ENV['CAS_PORT']
     cas_options[:ssl] = ENV['CAS_SSL'] == 'true' if ENV['CAS_SSL']
     cas_options[:service_validate_url] = ENV['CAS_VALIDATE_URL'] if ENV['CAS_VALIDATE_URL']
-    cas_options[:callback_url] = 'https://turbo-journey-5v6gwr4vqw43p4vw-3000.app.github.dev/auth/auth/openid_connect/callback'
+    cas_options[:callback_url] = 'http://localhost:3000/auth/auth/openid_connect/callback'
     cas_options[:logout_url] = ENV['CAS_LOGOUT_URL'] if ENV['CAS_LOGOUT_URL']
     cas_options[:login_url] = ENV['CAS_LOGIN_URL'] if ENV['CAS_LOGIN_URL']
     cas_options[:uid_field] = ENV['CAS_UID_FIELD'] || 'user' if ENV['CAS_UID_FIELD']
@@ -101,8 +101,8 @@ Devise.setup do |config|
     oidc_options[:client_options][:host] = ENV['OIDC_HOST'] if ENV['OIDC_HOST'] #OPTIONAL
     oidc_options[:client_options][:port] = ENV['OIDC_PORT'] if ENV['OIDC_PORT'] #OPTIONAL
     oidc_options[:client_options][:authorization_endpoint] = ENV['OIDC_AUTH_ENDPOINT'] if ENV['OIDC_AUTH_ENDPOINT'] #NEED when discovery != true
-    oidc_options[:client_options][:token_endpoint] = ENV['OIDC_TOKEN_ENDPOINT'] if ENV['OIDC_TOKEN_ENDPOINT'] #NEED when discovery != true
-    oidc_options[:client_options][:userinfo_endpoint] = ENV['OIDC_USER_INFO_ENDPOINT'] if ENV['OIDC_USER_INFO_ENDPOINT'] #NEED when discovery != true
+    # oidc_options[:client_options][:token_endpoint] = ENV['OIDC_TOKEN_ENDPOINT'] if ENV['OIDC_TOKEN_ENDPOINT'] #NEED when discovery != true
+    oidc_options[:client_options][:token_endpoint] = "https://login.inrupt.com/token" #NEED when discovery != true
     oidc_options[:client_options][:jwks_uri] = ENV['OIDC_JWKS_URI'] if ENV['OIDC_JWKS_URI'] #NEED when discovery != true
     oidc_options[:client_options][:end_session_endpoint] = ENV['OIDC_END_SESSION_ENDPOINT'] if ENV['OIDC_END_SESSION_ENDPOINT'] #OPTIONAL
     oidc_options[:security] = {}

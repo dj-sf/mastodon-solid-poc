@@ -1,0 +1,6 @@
+https://login.inrupt.com/authorization?
+client_id=2254077c-faec-48ad-81e8-7cc69b209346&nonce=f59c85836b94ff7bf84fa3e6546aa4c9
+&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fauth%2Fauth%2Fopenid_connect%2Fcallback
+&response_type=code
+&scope=openid%20email%20profile%20address
+&state=0f40f2142f8a4622977bf2bbb789c025
