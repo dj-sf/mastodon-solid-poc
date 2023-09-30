@@ -15,6 +15,10 @@ RUN echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> /home/vscode/.bashrc \
     && echo 'eval "$(rbenv init -)"' >> /home/vscode/.bashrc \
     && /bin/bash -l -c "rbenv global system"
 
+# Install Ruby 3.2.2 using rbenv and set as global default
+RUN /bin/bash -lc "rbenv install 3.2.2" \
+    && /bin/bash -lc "rbenv global 3.2.2"
+
 # Install Rails
 # RUN gem install rails webdrivers
 
