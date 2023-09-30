@@ -21,7 +21,7 @@ Devise.setup do |config|
     cas_options[:port] = ENV['CAS_PORT'] if ENV['CAS_PORT']
     cas_options[:ssl] = ENV['CAS_SSL'] == 'true' if ENV['CAS_SSL']
     cas_options[:service_validate_url] = ENV['CAS_VALIDATE_URL'] if ENV['CAS_VALIDATE_URL']
-    cas_options[:callback_url] = 'https://turbo-journey-5v6gwr4vqw43p4vw-3000.app.github.dev/auth/auth/openid_connect/callback'
+    cas_options[:callback_url] = 'http://localhost:3000/auth/auth/openid_connect/callback'
     cas_options[:logout_url] = ENV['CAS_LOGOUT_URL'] if ENV['CAS_LOGOUT_URL']
     cas_options[:login_url] = ENV['CAS_LOGIN_URL'] if ENV['CAS_LOGIN_URL']
     cas_options[:uid_field] = ENV['CAS_UID_FIELD'] || 'user' if ENV['CAS_UID_FIELD']
@@ -78,8 +78,8 @@ Devise.setup do |config|
     oidc_options = {}
     oidc_options[:display_name] = ENV['OIDC_DISPLAY_NAME'] #OPTIONAL
     oidc_options[:issuer] = ENV['OIDC_ISSUER'] if ENV['OIDC_ISSUER'] #NEED
-    # oidc_options[:discovery] = ENV['OIDC_DISCOVERY'] == 'true' if ENV['OIDC_DISCOVERY'] #OPTIONAL (default: false)
-    oidc_options[:discovery] = true
+    oidc_options[:discovery] = ENV['OIDC_DISCOVERY'] == 'true' if ENV['OIDC_DISCOVERY'] #OPTIONAL (default: false)
+    # oidc_options[:discovery] = true
 
     oidc_options[:client_auth_method] = ENV['OIDC_CLIENT_AUTH_METHOD'] if ENV['OIDC_CLIENT_AUTH_METHOD'] #OPTIONAL (default: basic)
     scope_string = ENV['OIDC_SCOPE'] if ENV['OIDC_SCOPE'] #NEED
