@@ -151,6 +151,8 @@ group :development do
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
 
+  gem 'ruby-lsp', require: false
+
   # Annotates modules with schema
   gem 'annotate', '~> 3.2'
 
@@ -193,6 +195,8 @@ group :development, :test do
   gem 'rdbg'
   gem 'pry'
   gem 'pry-byebug'
+  gem 'ruby-debug-ide', '~> 0.7.0'
+  gem 'debase', '~> 0.2.5.beta2'
 
   # RSpec runner for rails
   gem 'rspec-rails', '~> 6.0'
