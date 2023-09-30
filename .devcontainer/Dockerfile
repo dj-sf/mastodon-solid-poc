@@ -10,6 +10,7 @@ RUN /bin/bash -lc "rvm use system" \
     && echo "unset GEM_HOME GEM_PATH" >> /home/vscode/.bashrc
 
 # Initialize rbenv and set Ruby version
+USER vscode
 RUN echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> /home/vscode/.bashrc \
     && echo 'eval "$(rbenv init -)"' >> /home/vscode/.bashrc \
     && /bin/bash -l -c "rbenv global system"
@@ -19,6 +20,12 @@ RUN echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> /home/vscode/.bashrc \
 
 # Run gem env to check settings
 RUN /bin/bash -l -c "gem env"
+
+USER root
+
+# Change ownership for the Ruby gems directory
+RUN chown -R vscode:vscode /usr/local/lib/ruby/gems/3.2.0
+RUN chown -R vscode:vscode /usr/local/bin
 
 # Install Node.js
 ARG NODE_VERSION="16"
