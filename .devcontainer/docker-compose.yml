@@ -21,6 +21,9 @@ services:
       ES_HOST: es
       ES_PORT: '9200'
       LIBRE_TRANSLATE_ENDPOINT: http://libretranslate:5000
+      # Retrieve git config settings from .env file
+      GIT_AUTHOR_NAME: ${GIT_AUTHOR_NAME}
+      GIT_AUTHOR_EMAIL: ${GIT_AUTHOR_EMAIL}
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity
     ports:
