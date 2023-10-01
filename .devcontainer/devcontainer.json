@@ -8,7 +8,7 @@
     "ghcr.io/devcontainers/features/sshd:1": {}
   },
 
-  "forwardPorts": [3000, 4000],
+  "forwardPorts": [3000, 4000, 1234],
 
   "portsAttributes": {
     "3000": {
@@ -34,7 +34,15 @@
   "customizations": {
     "vscode": {
       "settings": {},
-      "extensions": ["EditorConfig.EditorConfig", "webben.browserslist"]
+      "extensions": [
+        "EditorConfig.EditorConfig",
+        "webben.browserslist",
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        "christian-kohler.npm-intellisense",
+        "benspaulding.procfile",
+        "castwide.solargraph"
+      ]
     }
   }
 }
