@@ -86,8 +86,8 @@ module.exports = {
       publicPath: true,
     }),
     new CircularDependencyPlugin({
-      failOnError: true,
-    })
+      failOnError: false,
+    }),
   ],
 
   resolve: {

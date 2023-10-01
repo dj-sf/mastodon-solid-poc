@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
+
 import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
 
 import { Link, withRouter } from 'react-router-dom';
@@ -38,6 +39,16 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchServer());
   }
 });
+
+const beginOidcAuthentication = async () => {
+  try {
+    const response = await fetch(new URL("/auth/auth/openid_connect", window.location.href), {method: 'POST', content: 'text/html; charset=utf-8'})
+    return response;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
 
 class Header extends PureComponent {
 
@@ -94,11 +105,16 @@ class Header extends PureComponent {
             </button>
           );
         }
-
+        let solidAuthButton = (
+            <button onClick={beginOidcAuthentication} className='button' >
+                <FormattedMessage id='sign_in_banner.signin_with_solid' defaultMessage='Signin with SolidPod' />
+            </button>
+        )
         content = (
           <>
             {signupButton}
             <a href='/auth/sign_in' className='button button-tertiary'><FormattedMessage id='sign_in_banner.sign_in' defaultMessage='Login' /></a>
+            {solidAuthButton}
           </>
         );
       }

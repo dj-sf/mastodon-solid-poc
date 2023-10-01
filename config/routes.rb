@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# == Route Map
+#
+
 require 'sidekiq_unique_jobs/web'
 require 'sidekiq-scheduler/web'
 
@@ -185,6 +188,8 @@ Rails.application.routes.draw do
 
   get '/privacy-policy', to: 'privacy#show', as: :privacy_policy
   get '/terms',          to: redirect('/privacy-policy')
+
+  # get '/callback',   to:
 
   match '/', via: [:post, :put, :patch, :delete], to: 'application#raise_not_found', format: false
   match '*unmatched_route', via: :all, to: 'application#raise_not_found', format: false

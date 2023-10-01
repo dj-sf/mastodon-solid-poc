@@ -20,9 +20,20 @@ module.exports = merge(sharedConfig, {
   devtool: 'cheap-module-eval-source-map',
 
   stats: {
-    errorDetails: true,
+    errorDetails: true
   },
-
+  module: {
+    rules: [
+      {
+        test: /\.mjs$/,
+        include: /node_modules/,
+        type: "javascript/auto"
+      }
+    ]
+  },
+  resolve: {
+    extensions: ['.mjs', '.js', '.json']
+  },
   output: {
     pathinfo: true,
   },

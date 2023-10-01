@@ -1,0 +1,4 @@
+web: env PORT=3000 RAILS_ENV=development ./vendor/bundle/ruby/3.2.0/bin/rdebug-ide --host 0.0.0.0 --port 1234 --dispatcher-port 26162 -- bundle exec puma -C config/puma.rb
+sidekiq: env PORT=3000 RAILS_ENV=development bundle exec sidekiq
+stream: env PORT=4000 yarn run start
+webpack: bin/webpack-dev-server

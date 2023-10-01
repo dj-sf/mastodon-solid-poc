@@ -31,6 +31,7 @@ Rails.application.configure do
     }
   else
     config.action_controller.perform_caching = false
+    config.public_file_server.enabled = true
 
     config.cache_store = :null_store
   end

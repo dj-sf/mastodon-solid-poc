@@ -2,10 +2,22 @@ import { useCallback } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 
-
 import { openModal } from 'mastodon/actions/modal';
 import { registrationsOpen, sso_redirect } from 'mastodon/initial_state';
 import { useAppDispatch, useAppSelector } from 'mastodon/store';
+
+
+const beginOidcAuthentication = async () => {
+  try {
+    const response = await fetch(new URL("/auth/auth/openid_connect", window.location.href), {method: 'POST', content: 'text/html; charset=utf-8'})
+    return response;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
+
+
 
 const SignInBanner = () => {
   const dispatch = useAppDispatch();
@@ -42,12 +54,21 @@ const SignInBanner = () => {
     );
   }
 
+  let solidAuthButton = (
+    <button onClick={beginOidcAuthentication} className='button button--block' >
+        <FormattedMessage id='sign_in_banner.signin_with_solid' defaultMessage='Signin with SolidPod' />
+    </button>
+)
+
+
   return (
     <div className='sign-in-banner'>
       <p><FormattedMessage id='sign_in_banner.text' defaultMessage='Login to follow profiles or hashtags, favorite, share and reply to posts. You can also interact from your account on a different server.' /></p>
+      {solidAuthButton}
       {signupButton}
       <a href='/auth/sign_in' className='button button--block button-tertiary'><FormattedMessage id='sign_in_banner.sign_in' defaultMessage='Login' /></a>
     </div>
+
   );
 };
 

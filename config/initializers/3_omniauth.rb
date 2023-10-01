@@ -21,7 +21,7 @@ Devise.setup do |config|
     cas_options[:port] = ENV['CAS_PORT'] if ENV['CAS_PORT']
     cas_options[:ssl] = ENV['CAS_SSL'] == 'true' if ENV['CAS_SSL']
     cas_options[:service_validate_url] = ENV['CAS_VALIDATE_URL'] if ENV['CAS_VALIDATE_URL']
-    cas_options[:callback_url] = ENV['CAS_CALLBACK_URL'] if ENV['CAS_CALLBACK_URL']
+    cas_options[:callback_url] = 'http://localhost:3000/auth/auth/openid_connect/callback'
     cas_options[:logout_url] = ENV['CAS_LOGOUT_URL'] if ENV['CAS_LOGOUT_URL']
     cas_options[:login_url] = ENV['CAS_LOGIN_URL'] if ENV['CAS_LOGIN_URL']
     cas_options[:uid_field] = ENV['CAS_UID_FIELD'] || 'user' if ENV['CAS_UID_FIELD']
@@ -79,6 +79,8 @@ Devise.setup do |config|
     oidc_options[:display_name] = ENV['OIDC_DISPLAY_NAME'] #OPTIONAL
     oidc_options[:issuer] = ENV['OIDC_ISSUER'] if ENV['OIDC_ISSUER'] #NEED
     oidc_options[:discovery] = ENV['OIDC_DISCOVERY'] == 'true' if ENV['OIDC_DISCOVERY'] #OPTIONAL (default: false)
+    # oidc_options[:discovery] = true
+
     oidc_options[:client_auth_method] = ENV['OIDC_CLIENT_AUTH_METHOD'] if ENV['OIDC_CLIENT_AUTH_METHOD'] #OPTIONAL (default: basic)
     scope_string = ENV['OIDC_SCOPE'] if ENV['OIDC_SCOPE'] #NEED
     scopes = scope_string.split(',')
@@ -89,12 +91,12 @@ Devise.setup do |config|
     oidc_options[:prompt] = ENV['OIDC_PROMPT'] if ENV['OIDC_PROMPT'] #OPTIONAL
     oidc_options[:send_nonce] = ENV['OIDC_SEND_NONCE'] == 'true' if ENV['OIDC_SEND_NONCE'] #OPTIONAL (default: true)
     oidc_options[:send_scope_to_token_endpoint] = ENV['OIDC_SEND_SCOPE_TO_TOKEN_ENDPOINT'] == 'true' if ENV['OIDC_SEND_SCOPE_TO_TOKEN_ENDPOINT'] #OPTIONAL (default: true)
-    oidc_options[:post_logout_redirect_uri] = ENV['OIDC_IDP_LOGOUT_REDIRECT_URI'] if ENV['OIDC_IDP_LOGOUT_REDIRECT_URI'] #OPTIONAL
+    oidc_options[:post_logout_redirect_uri] = 'turbo-journey-5v6gwr4vqw43p4vw-3000.app.github.dev/auth/auth/openid_connect/callback'
     oidc_options[:uid_field] = ENV['OIDC_UID_FIELD'] if ENV['OIDC_UID_FIELD'] #NEED
     oidc_options[:client_options] = {}
     oidc_options[:client_options][:identifier] = ENV['OIDC_CLIENT_ID'] if ENV['OIDC_CLIENT_ID'] #NEED
     oidc_options[:client_options][:secret] = ENV['OIDC_CLIENT_SECRET'] if ENV['OIDC_CLIENT_SECRET'] #NEED
-    oidc_options[:client_options][:redirect_uri] = ENV['OIDC_REDIRECT_URI'] if ENV['OIDC_REDIRECT_URI'] #NEED
+    oidc_options[:client_options][:redirect_uri] = 'turbo-journey-5v6gwr4vqw43p4vw-3000.app.github.dev/auth/auth/openid_connect/callback'
     oidc_options[:client_options][:scheme] = ENV['OIDC_HTTP_SCHEME'] if ENV['OIDC_HTTP_SCHEME'] #OPTIONAL (default: https)
     oidc_options[:client_options][:host] = ENV['OIDC_HOST'] if ENV['OIDC_HOST'] #OPTIONAL
     oidc_options[:client_options][:port] = ENV['OIDC_PORT'] if ENV['OIDC_PORT'] #OPTIONAL
@@ -105,6 +107,7 @@ Devise.setup do |config|
     oidc_options[:client_options][:end_session_endpoint] = ENV['OIDC_END_SESSION_ENDPOINT'] if ENV['OIDC_END_SESSION_ENDPOINT'] #OPTIONAL
     oidc_options[:security] = {}
     oidc_options[:security][:assume_email_is_verified] = ENV['OIDC_SECURITY_ASSUME_EMAIL_IS_VERIFIED'] == 'true' #OPTIONAL
+    # binding.b
     config.omniauth :openid_connect, oidc_options
   end
 end
