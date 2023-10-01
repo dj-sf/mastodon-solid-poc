@@ -1,4 +1,4 @@
-web: env PORT=3000 RAILS_ENV=development RUBY_DEBUG_OPEN=true bundle exec rdbg --open -n -c -- bundle exec puma -C config/puma.rb
+web: env PORT=3000 RAILS_ENV=development RUBY_DEBUG_OPEN=true RUBY_YJIT_ENABLE=1 bundle exec rails s
 sidekiq: env PORT=3000 RAILS_ENV=development bundle exec sidekiq
 stream: env PORT=4000 yarn run start
 webpack: bin/webpack-dev-server
