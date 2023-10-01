@@ -187,9 +187,8 @@ group :development, :test do
   gem 'ruby-prof', require: false
   gem 'stackprof', require: false
   gem 'test-prof'
-  gem 'solargraph'
-  gem 'debug'
   gem 'rdbg'
+  gem 'debug'
 
   # RSpec runner for rails
   gem 'rspec-rails', '~> 6.0'
