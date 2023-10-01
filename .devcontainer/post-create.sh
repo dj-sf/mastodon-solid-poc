@@ -1,6 +1,14 @@
 #!/bin/bash
 
+gem env
+
 set -e # Fail the whole script on first error
+
+# make sure env vars don't interfere with rbenv
+unset GEM_HOME GEM_PATH
+
+# make sure rbenv is on the path
+export PATH="$HOME/.rbenv/shims:$PATH" >> /home/vscode/.bashrc
 
 # Fetch Ruby gem dependencies
 bundle config path 'vendor/bundle'
@@ -24,3 +32,7 @@ RAILS_ENV=development ./bin/rails assets:precompile
 
 # Precompile assets for test
 RAILS_ENV=test NODE_ENV=tests ./bin/rails assets:precompile
+
+
+# since you'll need to do it anyway
+gem install foreman
