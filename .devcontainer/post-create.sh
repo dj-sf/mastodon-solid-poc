@@ -16,7 +16,7 @@ bundle config with 'development test'
 bundle install
 
 # Make Gemfile.lock pristine again
-git checkout -- Gemfile.lock
+# git checkout -- Gemfile.lock
 
 # Fetch Javascript dependencies
 yarn --frozen-lockfile
