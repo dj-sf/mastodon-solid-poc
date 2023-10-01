@@ -10,7 +10,11 @@ RUN /bin/zsh -lc "rvm use system" \
     && echo "export PATH=$NEW_PATH" >> /home/vscode/.zshrc \
     && echo "unset GEM_HOME GEM_PATH" >> /home/vscode/.zshrc \
     && echo "export PATH=$NEW_PATH" >> ~/.zshrc \
-    && echo "unset GEM_HOME GEM_PATH" >> ~/.zshrc
+    && echo "unset GEM_HOME GEM_PATH" >> ~/.zshrc \
+    && echo "export PATH=$NEW_PATH" >> /home/vscode/.bashrc \
+    && echo "unset GEM_HOME GEM_PATH" >> /home/vscode/.bashrc \
+    && echo "export PATH=$NEW_PATH" >> ~/.bashrc \
+    && echo "unset GEM_HOME GEM_PATH" >> ~/.bashrc
 RUN /bin/zsh -l -c "gem env"
 
 # Initialize rbenv and set Ruby version for both ROOT user and vscode user
@@ -18,23 +22,17 @@ RUN /bin/zsh -l -c "gem env"
 USER vscode
 RUN echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> /home/vscode/.zshrc \
     && echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.zshrc \
+    && echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> /home/vscode/.bashrc \
+    && echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc \
     && /bin/zsh -lc "rbenv install 3.2.2" \
     && /bin/zsh -lc "rbenv global 3.2.2" \
     && echo 'eval "$(rbenv init -)"' >> /home/vscode/.zshrc \
-    && echo 'eval "$(rbenv init -)"' >> ~/.zshrc
+    && echo 'eval "$(rbenv init -)"' >> ~/.zshrc \
+    && echo 'eval "$(rbenv init -)"' >> /home/vscode/.bashrc \
+    && echo 'eval "$(rbenv init -)"' >> ~/.bashrc
 
-RUN /bin/zsh -l -c "gem env"
-
-
-# RUN /bin/zsh -lc "rbenv install 3.2.2" \
-#     && /bin/zsh -lc "rbenv global 3.2.2"
-
-RUN /bin/zsh -l -c "gem env"
 # Install Rails
 # RUN gem install rails webdrivers
-
-# Run gem env to check settings
-RUN /bin/zsh -l -c "gem env"
 
 USER root
 
@@ -49,14 +47,6 @@ RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && nvm install ${NODE_VERSI
 # [Optional] Uncomment this section to install additional OS packages.
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends libicu-dev libidn11-dev ffmpeg imagemagick libpam-dev
-
-# # RUN su vscode -c "echo $PATH"
-# RUN echo "root GEM ENVIRONMENT"
-# RUN gem env
-
-# # vscode user GEM ENVIRONMENT
-# RUN echo "root GEM ENVIRONMENT"
-# RUN su vscode -c "gem env"
 
 # [Optional] Uncomment this line to install global node packages.
 RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && npm install -g yarn" 2>&1
