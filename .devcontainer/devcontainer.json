@@ -49,7 +49,7 @@
     "OIDC_SCOPE": "openid,email,profile,address,webid",
     "OIDC_UID_FIELD": "sub",
     "OIDC_CLIENT_ID": "2254077c-faec-48ad-81e8-7cc69b209346",
-    "OIDC_CLIENT_SECRET": "c6c7a701-c1dd-42a2-ac94-3bd62cdcf223",
+    "OIDC_CLIENT_SECRET": "<redacted>",
     "OIDC_REDIRECT_URI": "http://localhost:3000/auth/auth/openid_connect/callback",
     "OIDC_DISCOVERY": "true",
     "OIDC_RESPONSE_TYPE": "code",
